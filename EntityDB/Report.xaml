@@ -1,0 +1,22 @@
+﻿<Window x:Class="EntityDB.Report"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EntityDB"
+        mc:Ignorable="d"
+        Title="Report" Height="450" Width="800">
+    <Grid>
+        
+        <DataGrid Grid.Row="0" Grid.Column="0" BorderBrush="Black" Opacity="0.8" Background="Black" Name="dgMain" Margin="15,15,15,35" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID_reader}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=R_name}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=R_surname}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Взято книг" Binding="{Binding Path=Books}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Процент от общего кол-ва" Binding="{Binding Path=Percent}" Width="1*"></DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище PIb_162_BeloborodovaModelContainer" CdmEntityContainer="PIb_162_BeloborodovaEntities">
+    <EntitySetMapping Name="T_Author">
+      <EntityTypeMapping TypeName="PIb_162_BeloborodovaModel.T_Author">
+        <MappingFragment StoreEntitySet="T_Author">
+          <ScalarProperty Name="A_surname" ColumnName="A_surname" />
+          <ScalarProperty Name="A_name" ColumnName="A_name" />
+          <ScalarProperty Name="ID_author" ColumnName="ID_author" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Book">
+      <EntityTypeMapping TypeName="PIb_162_BeloborodovaModel.T_Book">
+        <MappingFragment StoreEntitySet="T_Book">
+          <ScalarProperty Name="ID_user" ColumnName="ID_user" />
+          <ScalarProperty Name="Book_name" ColumnName="Book_name" />
+          <ScalarProperty Name="Available" ColumnName="Available" />
+          <ScalarProperty Name="ID_genre" ColumnName="ID_genre" />
+          <ScalarProperty Name="ID_author" ColumnName="ID_author" />
+          <ScalarProperty Name="ID_book" ColumnName="ID_book" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Errors">
+      <EntityTypeMapping TypeName="PIb_162_BeloborodovaModel.T_Errors">
+        <MappingFragment StoreEntitySet="T_Errors">
+          <ScalarProperty Name="Error_date" ColumnName="Error_date" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="ID_error" ColumnName="ID_error" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Genre">
+      <EntityTypeMapping TypeName="PIb_162_BeloborodovaModel.T_Genre">
+        <MappingFragment StoreEntitySet="T_Genre">
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Genre_name" ColumnName="Genre_name" />
+          <ScalarProperty Name="ID_genre" ColumnName="ID_genre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Journal">
+      <EntityTypeMapping TypeName="PIb_162_BeloborodovaModel.T_Journal">
+        <MappingFragment StoreEntitySet="T_Journal">
+          <ScalarProperty Name="Date_issue" ColumnName="Date_issue" />
+          <ScalarProperty Name="ID_reader" ColumnName="ID_reader" />
+          <ScalarProperty Name="ID_book" ColumnName="ID_book" />
+          <ScalarProperty Name="ID_journal" ColumnName="ID_journal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Reader">
+      <EntityTypeMapping TypeName="PIb_162_BeloborodovaModel.T_Reader">
+        <MappingFragment StoreEntitySet="T_Reader">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="R_name" ColumnName="R_name" />
+          <ScalarProperty Name="R_surname" ColumnName="R_surname" />
+          <ScalarProperty Name="Reg_date" ColumnName="Reg_date" />
+          <ScalarProperty Name="ID_reader" ColumnName="ID_reader" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Messages">
+      <EntityTypeMapping TypeName="PIb_162_BeloborodovaModel.T_Messages">
+        <MappingFragment StoreEntitySet="T_Messages">
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="ID_msg" ColumnName="ID_msg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

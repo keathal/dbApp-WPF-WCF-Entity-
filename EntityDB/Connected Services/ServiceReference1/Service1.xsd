@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WcfService1" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfService1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfT_Book_my">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="T_Book_my" nillable="true" type="tns:T_Book_my" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfT_Book_my" nillable="true" type="tns:ArrayOfT_Book_my" />
+  <xs:complexType name="T_Book_my">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:T_Book">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="enableButton" type="xs:boolean" />
+          <xs:element minOccurs="0" name="isAdmin" type="xs:float" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="T_Book_my" nillable="true" type="tns:T_Book_my" />
+  <xs:complexType name="T_Book">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Available" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Book_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID_author" type="xs:int" />
+      <xs:element minOccurs="0" name="ID_book" type="xs:int" />
+      <xs:element minOccurs="0" name="ID_genre" type="xs:int" />
+      <xs:element minOccurs="0" name="ID_user" type="xs:int" />
+      <xs:element minOccurs="0" name="T_Author" nillable="true" type="tns:T_Author" />
+      <xs:element minOccurs="0" name="T_Genre" nillable="true" type="tns:T_Genre" />
+      <xs:element minOccurs="0" name="T_Journal" nillable="true" type="tns:ArrayOfT_Journal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="T_Book" nillable="true" type="tns:T_Book" />
+  <xs:complexType name="T_Author">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="A_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="A_surname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID_author" type="xs:int" />
+      <xs:element minOccurs="0" name="T_Book" nillable="true" type="tns:ArrayOfT_Book" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="T_Author" nillable="true" type="tns:T_Author" />
+  <xs:complexType name="ArrayOfT_Book">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="T_Book" nillable="true" type="tns:T_Book" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfT_Book" nillable="true" type="tns:ArrayOfT_Book" />
+  <xs:complexType name="T_Genre">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Color" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Genre_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID_genre" type="xs:int" />
+      <xs:element minOccurs="0" name="T_Book" nillable="true" type="tns:ArrayOfT_Book" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="T_Genre" nillable="true" type="tns:T_Genre" />
+  <xs:complexType name="ArrayOfT_Journal">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="T_Journal" nillable="true" type="tns:T_Journal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfT_Journal" nillable="true" type="tns:ArrayOfT_Journal" />
+  <xs:complexType name="T_Journal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date_issue" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID_book" type="xs:int" />
+      <xs:element minOccurs="0" name="ID_journal" type="xs:int" />
+      <xs:element minOccurs="0" name="ID_reader" type="xs:int" />
+      <xs:element minOccurs="0" name="T_Book" nillable="true" type="tns:T_Book" />
+      <xs:element minOccurs="0" name="T_Reader" nillable="true" type="tns:T_Reader" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="T_Journal" nillable="true" type="tns:T_Journal" />
+  <xs:complexType name="T_Reader">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID_reader" type="xs:int" />
+      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="R_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="R_surname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Reg_date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="T_Journal" nillable="true" type="tns:ArrayOfT_Journal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="T_Reader" nillable="true" type="tns:T_Reader" />
+  <xs:complexType name="ArrayOfT_Genre">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="T_Genre" nillable="true" type="tns:T_Genre" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfT_Genre" nillable="true" type="tns:ArrayOfT_Genre" />
+  <xs:complexType name="ArrayOfT_Author">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="T_Author" nillable="true" type="tns:T_Author" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfT_Author" nillable="true" type="tns:ArrayOfT_Author" />
+  <xs:complexType name="ArrayOfT_Reader">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="T_Reader" nillable="true" type="tns:T_Reader" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfT_Reader" nillable="true" type="tns:ArrayOfT_Reader" />
+  <xs:complexType name="ArrayOfT_Report">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="T_Report" nillable="true" type="tns:T_Report" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfT_Report" nillable="true" type="tns:ArrayOfT_Report" />
+  <xs:complexType name="T_Report">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Books" type="xs:int" />
+      <xs:element minOccurs="0" name="ID_reader" type="xs:int" />
+      <xs:element minOccurs="0" name="Percent" type="xs:int" />
+      <xs:element minOccurs="0" name="R_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="R_surname" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="T_Report" nillable="true" type="tns:T_Report" />
+</xs:schema>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aaa56cdad50a47ab9bfebbfb31cafe69" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="PIb_162_BeloborodovaModel.T_Author" Width="1.5" PointX="0.75" PointY="7.5" />
+        <EntityTypeShape EntityType="PIb_162_BeloborodovaModel.T_Book" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="PIb_162_BeloborodovaModel.T_Errors" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PIb_162_BeloborodovaModel.T_Genre" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="PIb_162_BeloborodovaModel.T_Journal" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="PIb_162_BeloborodovaModel.T_Reader" Width="1.5" PointX="3" PointY="5.5" />
+        <AssociationConnector Association="PIb_162_BeloborodovaModel.FK_T_Book_T_Author" />
+        <AssociationConnector Association="PIb_162_BeloborodovaModel.FK_T_Book_T_Genre" />
+        <AssociationConnector Association="PIb_162_BeloborodovaModel.FK_T_Journal_T_Book" />
+        <AssociationConnector Association="PIb_162_BeloborodovaModel.FK_T_Journal_T_Reader" />
+        <EntityTypeShape EntityType="PIb_162_BeloborodovaModel.T_Messages" Width="1.5" PointX="7.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

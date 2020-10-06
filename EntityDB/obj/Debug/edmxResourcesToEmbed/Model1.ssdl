@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище PIb_162_BeloborodovaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="T_Author">
+    <Key>
+      <PropertyRef Name="ID_author" />
+    </Key>
+    <Property Name="ID_author" Type="int" Nullable="false" />
+    <Property Name="A_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="A_surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Book">
+    <Key>
+      <PropertyRef Name="ID_book" />
+    </Key>
+    <Property Name="ID_book" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_author" Type="int" Nullable="false" />
+    <Property Name="ID_genre" Type="int" Nullable="false" />
+    <Property Name="Available" Type="bit" />
+    <Property Name="Book_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Errors">
+    <Key>
+      <PropertyRef Name="ID_error" />
+    </Key>
+    <Property Name="ID_error" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Error_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Genre">
+    <Key>
+      <PropertyRef Name="ID_genre" />
+    </Key>
+    <Property Name="ID_genre" Type="int" Nullable="false" />
+    <Property Name="Genre_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Color" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Journal">
+    <Key>
+      <PropertyRef Name="ID_journal" />
+    </Key>
+    <Property Name="ID_journal" Type="int" Nullable="false" />
+    <Property Name="ID_book" Type="int" Nullable="false" />
+    <Property Name="ID_reader" Type="int" Nullable="false" />
+    <Property Name="Date_issue" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Reader">
+    <Key>
+      <PropertyRef Name="ID_reader" />
+    </Key>
+    <Property Name="ID_reader" Type="int" Nullable="false" />
+    <Property Name="Reg_date" Type="date" Nullable="false" />
+    <Property Name="R_surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="R_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_T_Book_T_Author">
+    <End Role="T_Author" Type="Self.T_Author" Multiplicity="1" />
+    <End Role="T_Book" Type="Self.T_Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Author">
+        <PropertyRef Name="ID_author" />
+      </Principal>
+      <Dependent Role="T_Book">
+        <PropertyRef Name="ID_author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Book_T_Genre">
+    <End Role="T_Genre" Type="Self.T_Genre" Multiplicity="1" />
+    <End Role="T_Book" Type="Self.T_Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Genre">
+        <PropertyRef Name="ID_genre" />
+      </Principal>
+      <Dependent Role="T_Book">
+        <PropertyRef Name="ID_genre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Journal_T_Book">
+    <End Role="T_Book" Type="Self.T_Book" Multiplicity="1" />
+    <End Role="T_Journal" Type="Self.T_Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Book">
+        <PropertyRef Name="ID_book" />
+      </Principal>
+      <Dependent Role="T_Journal">
+        <PropertyRef Name="ID_book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Journal_T_Reader">
+    <End Role="T_Reader" Type="Self.T_Reader" Multiplicity="1" />
+    <End Role="T_Journal" Type="Self.T_Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Reader">
+        <PropertyRef Name="ID_reader" />
+      </Principal>
+      <Dependent Role="T_Journal">
+        <PropertyRef Name="ID_reader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище PIb_162_BeloborodovaModelContainer">
+    <EntitySet Name="T_Author" EntityType="Self.T_Author" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Book" EntityType="Self.T_Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Errors" EntityType="Self.T_Errors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Genre" EntityType="Self.T_Genre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Journal" EntityType="Self.T_Journal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Reader" EntityType="Self.T_Reader" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_T_Book_T_Author" Association="Self.FK_T_Book_T_Author">
+      <End Role="T_Author" EntitySet="T_Author" />
+      <End Role="T_Book" EntitySet="T_Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Book_T_Genre" Association="Self.FK_T_Book_T_Genre">
+      <End Role="T_Genre" EntitySet="T_Genre" />
+      <End Role="T_Book" EntitySet="T_Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Journal_T_Book" Association="Self.FK_T_Journal_T_Book">
+      <End Role="T_Book" EntitySet="T_Book" />
+      <End Role="T_Journal" EntitySet="T_Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Journal_T_Reader" Association="Self.FK_T_Journal_T_Reader">
+      <End Role="T_Reader" EntitySet="T_Reader" />
+      <End Role="T_Journal" EntitySet="T_Journal" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

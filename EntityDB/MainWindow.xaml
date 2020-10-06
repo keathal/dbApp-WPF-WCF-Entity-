@@ -1,0 +1,105 @@
+﻿<Window x:Class="EntityDB.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EntityDB"
+        mc:Ignorable="d"
+        Title="Каталог книг" Height="400" Width="700">
+    <Grid Name="MainForm" IsEnabled="False">
+       
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="118*"/>
+            <ColumnDefinition Width="399*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Каталог книг"  Margin="10" Grid.ColumnSpan="2"></Label>
+        <Button Grid.Row="0" Width="100" Margin="0,7,35,0" Content="Вывести всё" HorizontalAlignment="Right" Height="25" BorderBrush="SteelBlue" Background="Lavender" Grid.Column="1" Click="Button_Click"/>
+        <Button Name="create" Grid.Row="0" Width="100" Margin="0,7,200,0" HorizontalAlignment="Right" Content="Добавить"  Height="25" BorderBrush="SteelBlue" Background="Lavender" Grid.Column="1" Click="create_Click"/>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid BorderBrush="Black" Opacity="0.8" Background="Black" Name="dgBooks" Grid.Column="0" Margin="15,15,15,50" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID книги" Binding="{Binding Path=ID_book}" Width="1*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Название книги" Binding="{Binding Path=Book_name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Автор" Binding="{Binding Path=T_Author.A_surname}" Width="1*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Жанр" Binding="{Binding Path=T_Genre.Genre_name}" Width="1*"></DataGridTextColumn>
+                    <DataGridCheckBoxColumn Header="Доступна" Binding="{Binding Path=Available}" Width="1*"></DataGridCheckBoxColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Name="b_book" IsEnabled="{Binding Path=Available}" Content="Забронировать" Tag="{Binding Path=ID_book}" Click="b_book_Click"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Opacity="{Binding Path=isAdmin}" Name="b_delete" Content="Удалить" Tag="{Binding Path=ID_book}" IsEnabled="{Binding Path=enableButton}" Click="b_delete_Click"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Opacity="{Binding Path=isAdmin}" Name="b_edit1" Content="Редактировать" Tag="{Binding Path=ID_book}" IsEnabled="{Binding Path=enableButton}" Click="b_edit1_Click"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Name="b_exit" Content="Выйти" Background="Lavender" BorderBrush="SteelBlue" HorizontalAlignment="Left" Margin="15" VerticalAlignment="Bottom" Width="75" Click="b_exit_Click"/>
+            <Button Grid.Column="0" Content="Чат" Name="btn_chat" HorizontalAlignment="Right" Margin="15" VerticalAlignment="Bottom" Width="75" Background="Lavender" BorderBrush="SteelBlue" Click="btn_chat_Click"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" MinWidth="350" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Background="Lavender" Name="t_bookname" Grid.Row="0" Margin="15" Height="25" Text="Название книги"/>
+            <ComboBox Name="C_author" Margin="15" Grid.Row="1" Height="25">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding Path=A_surname}" Tag="{Binding Path=ID_author}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox Name="C_genre" Grid.Row="2" Margin="15" Height="25" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Width="300" Text="{Binding Path=Genre_name}" Tag="{Binding Path=ID_genre}" Background="{Binding Path=Color}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button Name="b_search" Grid.Row="3" Width="100" Height="25" Background="Lavender" BorderBrush="SteelBlue" Margin="0,0,25,0" HorizontalAlignment="Right" Content="Найти" Click="b_search_Click"/>
+            <Button Name="b_tables" Background="Lavender" BorderBrush="SteelBlue" Content="Все таблицы" HorizontalAlignment="Right" Margin="0,0,25,0" Grid.Row="4" Height="25" Width="100" Click="b_tables_Click"/>
+            <CheckBox Content="Только доступные" Name="c_available" HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center" Margin="0,0,200,0"/>
+            <CheckBox Content="Все" Name="c_all"  HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center" Margin="0,0,150,0"/>
+        </Grid>
+        <Button x:Name="b_report" Grid.Row="0" Width="100" Margin="0,14,330,7" HorizontalAlignment="Right" Content="Отчет"  Height="25" BorderBrush="SteelBlue" Background="Lavender" Grid.Column="1" Click="b_report_Click"/>
+    </Grid>
+</Window>

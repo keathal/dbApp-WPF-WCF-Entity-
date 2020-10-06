@@ -1,0 +1,132 @@
+﻿<Window x:Class="EntityDB.Tables"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EntityDB"
+        mc:Ignorable="d"
+        Title="Tables" Height="500" Width="700">
+    <Grid Name="TablesForm" IsEnabled="False">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Grid.Row="0" Grid.Column="0" BorderBrush="Black" Opacity="0.8" Background="Black" Name="dgAuthor" Margin="15,15,15,35" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID автора" Binding="{Binding Path=ID_author}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=A_name}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=A_surname}" Width="1*"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Name="b_author_delete" Content="Удалить" Tag="{Binding Path=ID_author}" Click="b_author_delete_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Name="b_edit_author" Content="Редактировать" Tag="{Binding Path=ID_author}" Click="b_edit_author_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="b_add_author" Grid.Row="0" Grid.Column="0" Width="75" Height="25" Background="Lavender" Margin="5, 5, 15, 5" Content="Добавить" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="b_add_author_Click"/>
+
+        <DataGrid Grid.Row="1" Grid.Column="0" BorderBrush="Black" Opacity="0.8" Background="Black" Name="dgGenre" Margin="15,17,15,33" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID жанра" Binding="{Binding Path=ID_genre}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Genre_name}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цвет" Binding="{Binding Path=Color}" Width="1*"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Name="b_genre_delete" Content="Удалить" Tag="{Binding Path=ID_genre}" Click="b_genre_delete_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Name="b_edit_genre" Content="Редактировать" Tag="{Binding Path=ID_genre}" Click="b_edit_genre_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="b_add_genre" Grid.Row="1" Grid.Column="0" Width="75" Height="25" Background="Lavender" Margin="5, 5, 15, 5" Content="Добавить" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="b_add_genre_Click"></Button>
+
+        <DataGrid Grid.Row="1" Grid.Column="1" BorderBrush="Black" Opacity="0.8" Background="Black" Name="dgJournal" Margin="15,15,15,35" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID_journal}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Книга" Binding="{Binding Path=T_Book.Book_name}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия читателя" Binding="{Binding Path=T_Reader.R_surname}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата выдачи" Binding="{Binding Path=Date_issue}" Width="1*"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Name="b_journal_delete" Content="Удалить" Tag="{Binding Path=ID_journal}" Click="b_journal_delete_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Name="b_edit_journal" Content="Редактировать" Tag="{Binding Path=ID_journal}" Click="b_edit_journal_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="b_add_journal" Grid.Row="1" Grid.Column="1" Width="75" Height="25" Background="Lavender" Margin="5, 5, 15, 5" Content="Добавить" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="b_add_journal_Click"></Button>
+
+
+        <DataGrid Grid.Row="0" Grid.Column="1" BorderBrush="Black" Opacity="0.8" Background="Black" Name="dgReader" Margin="15,15,15,35" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID_reader}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=R_name}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=R_surname}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата регистрации" Binding="{Binding Path=Reg_date}" Width="1*"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Name="b_reader_delete" Content="Удалить" Tag="{Binding Path=ID_reader}" Click="b_reader_delete_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Name="b_edit_reader" Content="Редактировать" Tag="{Binding Path=ID_reader}" Click="b_edit_reader_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="b_add_reader" Grid.Row="0" Grid.Column="1" Width="75" Height="25" Background="Lavender" Margin="5, 5, 15, 5" Content="Добавить" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="b_add_reader_Click"/>
+        <Button x:Name="b_refresh" Content="Обновить" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,135,5" Grid.Row="1" Height="25" VerticalAlignment="Bottom" Width="75" Click="b_refresh_Click"/>
+    </Grid>
+</Window>

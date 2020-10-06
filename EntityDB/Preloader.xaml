@@ -1,0 +1,15 @@
+﻿<Window x:Class="EntityDB.Preloader"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EntityDB"
+        mc:Ignorable="d"
+        Title="Идет загрузка" Height="300" Width="300" 
+        xmlns:gif="http://wpfanimatedgif.codeplex.com" >
+    <Grid Background="#FFF0F8FF">
+        <Image x:Name="gif" gif:ImageBehavior.RepeatBehavior="Forever" gif:ImageBehavior.AnimatedSource="126.gif"   Width="90" Height="90" />
+        <Label Foreground="DarkBlue" Content="Подождите, идет загрузка" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="15"/>
+
+    </Grid>
+</Window>

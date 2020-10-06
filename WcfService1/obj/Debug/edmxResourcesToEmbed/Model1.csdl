@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PIb_162_BeloborodovaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PIb_162_BeloborodovaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="T_Author" EntityType="PIb_162_BeloborodovaModel.T_Author" />
+    <EntitySet Name="T_Book" EntityType="PIb_162_BeloborodovaModel.T_Book" />
+    <EntitySet Name="T_Errors" EntityType="PIb_162_BeloborodovaModel.T_Errors" />
+    <EntitySet Name="T_Genre" EntityType="PIb_162_BeloborodovaModel.T_Genre" />
+    <EntitySet Name="T_Journal" EntityType="PIb_162_BeloborodovaModel.T_Journal" />
+    <EntitySet Name="T_Reader" EntityType="PIb_162_BeloborodovaModel.T_Reader" />
+    <AssociationSet Name="FK_T_Book_T_Author" Association="PIb_162_BeloborodovaModel.FK_T_Book_T_Author">
+      <End Role="T_Author" EntitySet="T_Author" />
+      <End Role="T_Book" EntitySet="T_Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Book_T_Genre" Association="PIb_162_BeloborodovaModel.FK_T_Book_T_Genre">
+      <End Role="T_Genre" EntitySet="T_Genre" />
+      <End Role="T_Book" EntitySet="T_Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Journal_T_Book" Association="PIb_162_BeloborodovaModel.FK_T_Journal_T_Book">
+      <End Role="T_Book" EntitySet="T_Book" />
+      <End Role="T_Journal" EntitySet="T_Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Journal_T_Reader" Association="PIb_162_BeloborodovaModel.FK_T_Journal_T_Reader">
+      <End Role="T_Reader" EntitySet="T_Reader" />
+      <End Role="T_Journal" EntitySet="T_Journal" />
+    </AssociationSet>
+    <EntitySet Name="T_Messages" EntityType="PIb_162_BeloborodovaModel.T_Messages" />
+  </EntityContainer>
+  <EntityType Name="T_Author">
+    <Key>
+      <PropertyRef Name="ID_author" />
+    </Key>
+    <Property Name="ID_author" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="A_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="A_surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_Book" Relationship="PIb_162_BeloborodovaModel.FK_T_Book_T_Author" FromRole="T_Author" ToRole="T_Book" />
+  </EntityType>
+  <EntityType Name="T_Book">
+    <Key>
+      <PropertyRef Name="ID_book" />
+    </Key>
+    <Property Name="ID_book" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_author" Type="Int32" Nullable="false" />
+    <Property Name="ID_genre" Type="Int32" Nullable="false" />
+    <Property Name="Available" Type="Boolean" />
+    <Property Name="Book_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_user" Type="Int32" Nullable="false" DefaultValue="1" />
+    <NavigationProperty Name="T_Author" Relationship="PIb_162_BeloborodovaModel.FK_T_Book_T_Author" FromRole="T_Book" ToRole="T_Author" />
+    <NavigationProperty Name="T_Genre" Relationship="PIb_162_BeloborodovaModel.FK_T_Book_T_Genre" FromRole="T_Book" ToRole="T_Genre" />
+    <NavigationProperty Name="T_Journal" Relationship="PIb_162_BeloborodovaModel.FK_T_Journal_T_Book" FromRole="T_Book" ToRole="T_Journal" />
+  </EntityType>
+  <EntityType Name="T_Errors">
+    <Key>
+      <PropertyRef Name="ID_error" />
+    </Key>
+    <Property Name="ID_error" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Error_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="T_Genre">
+    <Key>
+      <PropertyRef Name="ID_genre" />
+    </Key>
+    <Property Name="ID_genre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Genre_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_Book" Relationship="PIb_162_BeloborodovaModel.FK_T_Book_T_Genre" FromRole="T_Genre" ToRole="T_Book" />
+  </EntityType>
+  <EntityType Name="T_Journal">
+    <Key>
+      <PropertyRef Name="ID_journal" />
+    </Key>
+    <Property Name="ID_journal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_book" Type="Int32" Nullable="false" />
+    <Property Name="ID_reader" Type="Int32" Nullable="false" />
+    <Property Name="Date_issue" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="T_Book" Relationship="PIb_162_BeloborodovaModel.FK_T_Journal_T_Book" FromRole="T_Journal" ToRole="T_Book" />
+    <NavigationProperty Name="T_Reader" Relationship="PIb_162_BeloborodovaModel.FK_T_Journal_T_Reader" FromRole="T_Journal" ToRole="T_Reader" />
+  </EntityType>
+  <EntityType Name="T_Reader">
+    <Key>
+      <PropertyRef Name="ID_reader" />
+    </Key>
+    <Property Name="ID_reader" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Reg_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="R_surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="R_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_Journal" Relationship="PIb_162_BeloborodovaModel.FK_T_Journal_T_Reader" FromRole="T_Reader" ToRole="T_Journal" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_T_Book_T_Author">
+    <End Type="PIb_162_BeloborodovaModel.T_Author" Role="T_Author" Multiplicity="1" />
+    <End Type="PIb_162_BeloborodovaModel.T_Book" Role="T_Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Author">
+        <PropertyRef Name="ID_author" />
+      </Principal>
+      <Dependent Role="T_Book">
+        <PropertyRef Name="ID_author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Book_T_Genre">
+    <End Type="PIb_162_BeloborodovaModel.T_Genre" Role="T_Genre" Multiplicity="1" />
+    <End Type="PIb_162_BeloborodovaModel.T_Book" Role="T_Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Genre">
+        <PropertyRef Name="ID_genre" />
+      </Principal>
+      <Dependent Role="T_Book">
+        <PropertyRef Name="ID_genre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Journal_T_Book">
+    <End Type="PIb_162_BeloborodovaModel.T_Book" Role="T_Book" Multiplicity="1" />
+    <End Type="PIb_162_BeloborodovaModel.T_Journal" Role="T_Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Book">
+        <PropertyRef Name="ID_book" />
+      </Principal>
+      <Dependent Role="T_Journal">
+        <PropertyRef Name="ID_book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Journal_T_Reader">
+    <End Type="PIb_162_BeloborodovaModel.T_Reader" Role="T_Reader" Multiplicity="1" />
+    <End Type="PIb_162_BeloborodovaModel.T_Journal" Role="T_Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Reader">
+        <PropertyRef Name="ID_reader" />
+      </Principal>
+      <Dependent Role="T_Journal">
+        <PropertyRef Name="ID_reader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="T_Messages">
+    <Key>
+      <PropertyRef Name="ID_msg" />
+    </Key>
+    <Property Name="ID_msg" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
